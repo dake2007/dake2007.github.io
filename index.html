@@ -1,79 +1,857 @@
 <!DOCTYPE html>
-<html lang="zh">
-
+<html lang="zh-CN">
 <head>
-    <link rel="shortcut icon" href="./assets/images/favicon.png">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?c05bb16ea908292af9f6c513087a1cc3";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8550836177608334",
-        enable_page_level_ads: true
-    });
-    </script>
-    <meta charset="UTF-8">
-    <title>WebStack.cc - 设计师网址导航</title>
-    <script>
-    if (navigator.appName == "Netscape") {
-        var language = navigator.language;
-    } else {
-        var language = navigator.browserLanguage;
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机任务大挑战</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- 配置Tailwind自定义颜色和字体 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6', // 蓝色主色调
+            secondary: '#F97316', // 橙色辅助色
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
     }
-
-    if (language.indexOf("en") > -1) {
-        document.location.href = "en/index.html";
-    } else if (language.indexOf("zh") > -1) {
-        document.location.href = "cn/index.html";
-    } else {
-        document.location.href = "en/index.html";
-
+  </script>
+  
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+      }
+      .btn-primary {
+        @apply bg-primary text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-primary/90 active:scale-95 transition-all duration-300;
+      }
+      .btn-secondary {
+        @apply bg-secondary text-white px-6 py-3 rounded-full font-semibold shadow-md hover:bg-secondary/90 active:scale-95 transition-all duration-300;
+      }
     }
-    </script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="viggo" />
-    <title>WebStack.cc - Collection of resources and tools for Designers</title>
-    <meta name="keywords" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,设计师导航,设计师网址大全,设计师网址导航,产品经理网址导航,UX师网址导航,www.webstack.cc">
-    <meta name="description" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc">
+  </style>
+  
+  <style>
+    /* 全局动画定义 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     
-    <!-- / FB Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="http://www.webstack.cc/">
-    <meta property="og:title" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc">
-    <meta property="og:description" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,设计师导航,设计师网址大全,设计师网址导航,产品经理网址导航,UX师网址导航,www.webstack.cc">
-    <meta property="og:image" content="http://www.webstack.cc/assets/images/webstack_banner_cn.png">
-    <meta property="og:site_name" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc">
-    <!-- / Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="WebStack - 收集国内外优秀设计网站、UI设计资源网站、灵感创意网站、Resources网站，定时更新分享优质产品设计书签。www.webstack.cc">
-    <meta name="twitter:description" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,设计师导航,设计师网址大全,设计师网址导航,产品经理网址导航,UX师网址导航,www.webstack.cc">
-    <meta name="twitter:image" content="http://www.webstack.cc/assets/images/webstack_banner_cn.png">
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .animate-pulse-slow {
+      animation: pulse 2s infinite;
+    }
+    
+    /* 进度条动画 */
+    @keyframes progress {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    
+    .progress-animation {
+      animation: progress 1s ease-out forwards;
+    }
+  </style>
 </head>
 
-<body>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111463289-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
+<body class="bg-gradient-to-br from-light to-blue-50 min-h-screen font-sans text-dark">
+  <!-- 顶部导航栏 -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm transition-all duration-300">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <i class="fa fa-random text-primary text-2xl"></i>
+        <h1 class="text-[clamp(1.2rem,3vw,1.8rem)] font-bold text-primary">随机任务大挑战</h1>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <button id="statsBtn" class="flex items-center gap-1 text-dark/70 hover:text-primary transition-colors">
+          <i class="fa fa-trophy"></i>
+          <span class="hidden sm:inline">我的成就</span>
+        </button>
+        <button id="helpBtn" class="text-dark/70 hover:text-primary transition-colors">
+          <i class="fa fa-question-circle"></i>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    function gtag() {
-        dataLayer.push(arguments);
+  <main class="container mx-auto px-4 py-8 max-w-5xl">
+    <!-- 欢迎区域 - 首次加载时显示 -->
+    <section id="welcomeSection" class="text-center py-12 animate-fade-in">
+      <div class="mb-8">
+        <i class="fa fa-bolt text-6xl text-secondary animate-pulse-slow"></i>
+      </div>
+      <h2 class="text-[clamp(1.5rem,4vw,2.5rem)] font-bold mb-4 text-dark">准备好接受挑战了吗？</h2>
+      <p class="text-lg text-dark/70 mb-8 max-w-2xl mx-auto">
+        每天完成随机任务，提升自己，解锁成就！点击开始按钮获取你的第一个挑战。
+      </p>
+      <button id="startBtn" class="btn-primary">
+        <i class="fa fa-play mr-2"></i>开始挑战
+      </button>
+    </section>
+
+    <!-- 任务展示区域 - 默认隐藏 -->
+    <section id="taskSection" class="hidden">
+      <!-- 任务卡片 -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 transform transition-all duration-500">
+        <div class="bg-gradient-to-r from-primary to-blue-400 p-6 text-white">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold">当前挑战</h2>
+            <span id="taskCategory" class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+              任务类别
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-8 min-h-[250px] flex items-center justify-center">
+          <div id="taskContent" class="text-center text-[clamp(1.2rem,3vw,1.8rem)] font-medium leading-relaxed">
+            任务内容将在这里显示
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 p-6 flex justify-between">
+          <button id="skipBtn" class="px-6 py-2 border border-gray-300 rounded-full font-medium text-dark/70 hover:bg-gray-100 transition-colors">
+            <i class="fa fa-forward mr-2"></i>换一个
+          </button>
+          <button id="completeBtn" class="btn-secondary">
+            <i class="fa fa-check mr-2"></i>完成任务
+          </button>
+        </div>
+      </div>
+      
+      <!-- 任务操作区 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+              <i class="fa fa-history"></i>
+            </div>
+            <h3 class="font-bold text-lg">最近完成</h3>
+          </div>
+          <div id="recentTasks" class="space-y-3 max-h-40 overflow-y-auto pr-2">
+            <p class="text-dark/50 text-center italic">暂无完成的任务</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+              <i class="fa fa-fire"></i>
+            </div>
+            <h3 class="font-bold text-lg">挑战进度</h3>
+          </div>
+          <div class="mb-2 flex justify-between text-sm">
+            <span>本周完成</span>
+            <span id="weeklyCount">0/7</span>
+          </div>
+          <div class="h-4 bg-gray-100 rounded-full overflow-hidden mb-4">
+            <div id="weeklyProgress" class="h-full bg-primary rounded-full progress-animation" style="width: 0%"></div>
+          </div>
+          
+          <div class="mb-2 flex justify-between text-sm">
+            <span>总完成数</span>
+            <span id="totalCount">0</span>
+          </div>
+          <div class="h-4 bg-gray-100 rounded-full overflow-hidden">
+            <div id="totalProgress" class="h-full bg-secondary rounded-full progress-animation" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 任务分类浏览 -->
+      <div class="mb-8">
+        <h3 class="font-bold text-xl mb-4">按类别浏览</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          <button class="category-btn bg-white p-4 rounded-xl shadow-sm text-center card-hover" data-category="all">
+            <i class="fa fa-th text-primary text-xl mb-2"></i>
+            <div class="text-sm">全部</div>
+          </button>
+          <button class="category-btn bg-white p-4 rounded-xl shadow-sm text-center card-hover" data-category="physical">
+            <i class="fa fa-heartbeat text-red-500 text-xl mb-2"></i>
+            <div class="text-sm">运动</div>
+          </button>
+          <button class="category-btn bg-white p-4 rounded-xl shadow-sm text-center card-hover" data-category="mental">
+            <i class="fa fa-lightbulb-o text-yellow-500 text-xl mb-2"></i>
+            <div class="text-sm">脑力</div>
+          </button>
+          <button class="category-btn bg-white p-4 rounded-xl shadow-sm text-center card-hover" data-category="social">
+            <i class="fa fa-users text-green-500 text-xl mb-2"></i>
+            <div class="text-sm">社交</div>
+          </button>
+          <button class="category-btn bg-white p-4 rounded-xl shadow-sm text-center card-hover" data-category="creative">
+            <i class="fa fa-paint-brush text-purple-500 text-xl mb-2"></i>
+            <div class="text-sm">创意</div>
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 成就统计弹窗 - 默认隐藏 -->
+    <div id="statsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+      <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto animate-fade-in">
+        <div class="bg-gradient-to-r from-primary to-blue-400 p-6 text-white">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold">我的成就</h2>
+            <button id="closeStatsBtn" class="text-white hover:text-gray-100">
+              <i class="fa fa-times text-xl"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="mb-6">
+            <h3 class="font-bold text-lg mb-3">统计数据</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-gray-50 p-4 rounded-xl text-center">
+                <div class="text-3xl font-bold text-primary" id="statsTotal">0</div>
+                <div class="text-sm text-dark/60">总完成任务</div>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-xl text-center">
+                <div class="text-3xl font-bold text-secondary" id="statsStreak">0</div>
+                <div class="text-sm text-dark/60">当前连续天数</div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="font-bold text-lg mb-3">已解锁成就</h3>
+            <div id="achievementsList" class="space-y-3">
+              <p class="text-dark/50 text-center italic">暂无解锁的成就</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 帮助弹窗 - 默认隐藏 -->
+    <div id="helpModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+      <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto animate-fade-in">
+        <div class="bg-gradient-to-r from-primary to-blue-400 p-6 text-white">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold">使用帮助</h2>
+            <button id="closeHelpBtn" class="text-white hover:text-gray-100">
+              <i class="fa fa-times text-xl"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold text-lg mb-2 flex items-center">
+                <i class="fa fa-info-circle text-primary mr-2"></i>关于挑战
+              </h3>
+              <p class="text-dark/70">随机任务大挑战是一个帮助你探索新体验、养成良好习惯的工具。每天完成随机任务，提升自我。</p>
+            </div>
+            
+            <div>
+              <h3 class="font-bold text-lg mb-2 flex items-center">
+                <i class="fa fa-play-circle text-primary mr-2"></i>如何开始
+              </h3>
+              <p class="text-dark/70">点击"开始挑战"按钮获取你的第一个随机任务。完成后点击"完成任务"按钮记录你的成就。</p>
+            </div>
+            
+            <div>
+              <h3 class="font-bold text-lg mb-2 flex items-center">
+                <i class="fa fa-trophy text-primary mr-2"></i>成就系统
+              </h3>
+              <p class="text-dark/70">完成不同类型和数量的任务可以解锁成就。连续完成任务可以获得更高的连续天数记录。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 完成任务弹窗 - 默认隐藏 -->
+    <div id="completeModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+      <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center animate-fade-in">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fa fa-check text-4xl text-green-500"></i>
+        </div>
+        
+        <h2 class="text-2xl font-bold mb-3">太棒了！</h2>
+        <p class="text-dark/70 mb-6" id="completeMessage">你已成功完成任务</p>
+        
+        <div class="mb-6">
+          <div class="inline-block bg-gray-100 px-4 py-2 rounded-full text-sm font-medium">
+            +1 积分
+          </div>
+        </div>
+        
+        <button id="newTaskBtn" class="btn-primary w-full">
+          <i class="fa fa-refresh mr-2"></i>获取新任务
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white/70 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="mb-4">
+        <i class="fa fa-random text-primary text-2xl"></i>
+      </div>
+      <p class="mb-2">随机任务大挑战 &copy; 2023</p>
+      <p class="text-sm">每天一个小挑战，让生活更精彩</p>
+    </div>
+  </footer>
+
+  <script>
+    // 任务数据库
+    const tasks = [
+      // 运动类
+      {
+        content: "做30个俯卧撑",
+        category: "physical",
+        categoryName: "运动"
+      },
+      {
+        content: "跳绳1分钟，尽量不停歇",
+        category: "physical",
+        categoryName: "运动"
+      },
+      {
+        content: "进行15分钟的拉伸运动",
+        category: "physical",
+        categoryName: "运动"
+      },
+      {
+        content: "快走或慢跑30分钟",
+        category: "physical",
+        categoryName: "运动"
+      },
+      {
+        content: "做20个深蹲",
+        category: "physical",
+        categoryName: "运动"
+      },
+      
+      // 脑力类
+      {
+        content: "解一道数独谜题",
+        category: "mental",
+        categoryName: "脑力"
+      },
+      {
+        content: "学习5个新单词并使用它们造句",
+        category: "mental",
+        categoryName: "脑力"
+      },
+      {
+        content: "回忆并写下今天学到的三件事",
+        category: "mental",
+        categoryName: "脑力"
+      },
+      {
+        content: "做一道数学趣味题",
+        category: "mental",
+        categoryName: "脑力"
+      },
+      {
+        content: "冥想10分钟，专注于呼吸",
+        category: "mental",
+        categoryName: "脑力"
+      },
+      
+      // 社交类
+      {
+        content: "给一位久未联系的朋友打个电话",
+        category: "social",
+        categoryName: "社交"
+      },
+      {
+        content: "向一位陌生人提供帮助或赞美",
+        category: "social",
+        categoryName: "社交"
+      },
+      {
+        content: "与家人分享今天的一个小成就",
+        category: "social",
+        categoryName: "社交"
+      },
+      {
+        content: "向帮助过你的人表示感谢",
+        category: "social",
+        categoryName: "社交"
+      },
+      {
+        content: "认识一个新朋友并了解他们的一个爱好",
+        category: "social",
+        categoryName: "社交"
+      },
+      
+      // 创意类
+      {
+        content: "画一幅简单的风景画",
+        category: "creative",
+        categoryName: "创意"
+      },
+      {
+        content: "写一首短诗或一段随笔",
+        category: "creative",
+        categoryName: "创意"
+      },
+      {
+        content: "用不同的方式重新排列你的书桌",
+        category: "creative",
+        categoryName: "创意"
+      },
+      {
+        content: "学唱一首新歌的副歌部分",
+        category: "creative",
+        categoryName: "创意"
+      },
+      {
+        content: "拍摄一张你认为美丽的照片",
+        category: "creative",
+        categoryName: "创意"
+      }
+    ];
+    
+    // 成就列表
+    const achievements = [
+      { id: 1, name: "第一步", description: "完成第一个任务", icon: "fa-flag", condition: (stats) => stats.total >= 1 },
+      { id: 2, name: "坚持者", description: "连续完成3天任务", icon: "fa-calendar-check-o", condition: (stats) => stats.streak >= 3 },
+      { id: 3, name: "全才", description: "完成所有类别的任务", icon: "fa-trophy", condition: (stats) => stats.categories.physical && stats.categories.mental && stats.categories.social && stats.categories.creative },
+      { id: 4, name: "运动健将", description: "完成10个运动类任务", icon: "fa-heartbeat", condition: (stats) => stats.categoryCounts.physical >= 10 },
+      { id: 5, name: "智慧之星", description: "完成10个脑力类任务", icon: "fa-lightbulb-o", condition: (stats) => stats.categoryCounts.mental >= 10 },
+      { id: 6, name: "社交达人", description: "完成10个社交类任务", icon: "fa-users", condition: (stats) => stats.categoryCounts.social >= 10 },
+      { id: 7, name: "创意大师", description: "完成10个创意类任务", icon: "fa-paint-brush", condition: (stats) => stats.categoryCounts.creative >= 10 },
+      { id: 8, name: "五十里程碑", description: "总共完成50个任务", icon: "fa-star", condition: (stats) => stats.total >= 50 }
+    ];
+
+    // 应用状态管理
+    const appState = {
+      currentTask: null,
+      completedTasks: [],
+      stats: {
+        total: 0,
+        streak: 0,
+        lastCompletedDate: null,
+        categoryCounts: {
+          physical: 0,
+          mental: 0,
+          social: 0,
+          creative: 0
+        },
+        categories: {
+          physical: false,
+          mental: false,
+          social: false,
+          creative: false
+        },
+        weeklyCompleted: 0,
+        weeklyTotal: 7
+      },
+      achievements: {
+        unlocked: [],
+        locked: [...achievements]
+      },
+      
+      // 初始化状态，从localStorage加载
+      init() {
+        const savedState = localStorage.getItem('randomTaskChallengeState');
+        if (savedState) {
+          const parsed = JSON.parse(savedState);
+          this.completedTasks = parsed.completedTasks || [];
+          this.stats = parsed.stats || this.stats;
+          this.achievements = parsed.achievements || this.achievements;
+          
+          // 检查连续天数是否需要更新
+          this.checkStreak();
+          // 检查本周完成数是否需要重置
+          this.checkWeeklyProgress();
+        }
+      },
+      
+      // 保存状态到localStorage
+      save() {
+        localStorage.setItem('randomTaskChallengeState', JSON.stringify({
+          completedTasks: this.completedTasks,
+          stats: this.stats,
+          achievements: this.achievements
+        }));
+      },
+      
+      // 获取随机任务
+      getRandomTask(category = 'all') {
+        let filteredTasks = tasks;
+        if (category !== 'all') {
+          filteredTasks = tasks.filter(task => task.category === category);
+        }
+        
+        // 避免连续出现相同任务
+        let newTask;
+        do {
+          newTask = filteredTasks[Math.floor(Math.random() * filteredTasks.length)];
+        } while (this.currentTask && newTask.content === this.currentTask.content);
+        
+        this.currentTask = newTask;
+        return newTask;
+      },
+      
+      // 完成当前任务
+      completeCurrentTask() {
+        if (!this.currentTask) return;
+        
+        const task = {
+          ...this.currentTask,
+          date: new Date().toISOString()
+        };
+        
+        // 添加到已完成任务列表
+        this.completedTasks.unshift(task);
+        
+        // 更新统计数据
+        this.stats.total++;
+        this.stats.categoryCounts[task.category]++;
+        this.stats.categories[task.category] = true;
+        
+        // 检查是否是今天第一次完成任务
+        const today = new Date().toDateString();
+        const lastDate = this.stats.lastCompletedDate ? new Date(this.stats.lastCompletedDate).toDateString() : null;
+        
+        if (lastDate !== today) {
+          this.stats.weeklyCompleted = Math.min(this.stats.weeklyCompleted + 1, 7);
+          
+          // 检查连续天数
+          if (lastDate) {
+            const last = new Date(this.stats.lastCompletedDate);
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            if (last.toDateString() === yesterday.toDateString()) {
+              this.stats.streak++;
+            } else {
+              this.stats.streak = 1;
+            }
+          } else {
+            this.stats.streak = 1;
+          }
+          
+          this.stats.lastCompletedDate = new Date().toISOString();
+        }
+        
+        // 检查成就解锁
+        this.checkAchievements();
+        
+        // 保存状态
+        this.save();
+        
+        return task;
+      },
+      
+      // 检查连续天数
+      checkStreak() {
+        if (!this.stats.lastCompletedDate) return;
+        
+        const lastDate = new Date(this.stats.lastCompletedDate);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        
+        // 如果最后完成日期是昨天，连续天数保持
+        if (lastDate.toDateString() === yesterday.toDateString()) {
+          // 保持不变
+        } 
+        // 如果最后完成日期不是今天，连续天数重置为0
+        else if (lastDate.toDateString() !== today.toDateString()) {
+          this.stats.streak = 0;
+        }
+      },
+      
+      // 检查本周进度是否需要重置（每周一重置）
+      checkWeeklyProgress() {
+        if (!this.stats.lastCompletedDate) return;
+        
+        const lastDate = new Date(this.stats.lastCompletedDate);
+        const today = new Date();
+        
+        // 获取最后完成日期所在的周几（0是周日，1是周一）
+        const lastDay = lastDate.getDay() || 7; // 转换为1-7（周一到周日）
+        const todayDay = today.getDay() || 7;
+        
+        // 如果最后完成日期是上一周（本周一之前），重置本周完成数
+        if (lastDay < todayDay && Math.abs(today - lastDate) > 7 * 24 * 60 * 60 * 1000) {
+          this.stats.weeklyCompleted = 0;
+        }
+      },
+      
+      // 检查成就解锁
+      checkAchievements() {
+        const newlyUnlocked = [];
+        
+        // 过滤出还未解锁但已满足条件的成就
+        this.achievements.locked = this.achievements.locked.filter(achievement => {
+          if (achievement.condition(this.stats)) {
+            newlyUnlocked.push(achievement);
+            return false; // 从locked中移除
+          }
+          return true; // 保留在locked中
+        });
+        
+        // 添加到已解锁成就
+        this.achievements.unlocked = [...this.achievements.unlocked, ...newlyUnlocked];
+        
+        // 如果有新解锁的成就，显示提示
+        if (newlyUnlocked.length > 0) {
+          // 这里可以添加成就解锁的动画或提示
+          console.log('解锁新成就:', newlyUnlocked);
+        }
+      }
+    };
+
+    // DOM元素
+    const elements = {
+      welcomeSection: document.getElementById('welcomeSection'),
+      taskSection: document.getElementById('taskSection'),
+      taskContent: document.getElementById('taskContent'),
+      taskCategory: document.getElementById('taskCategory'),
+      startBtn: document.getElementById('startBtn'),
+      skipBtn: document.getElementById('skipBtn'),
+      completeBtn: document.getElementById('completeBtn'),
+      recentTasks: document.getElementById('recentTasks'),
+      weeklyCount: document.getElementById('weeklyCount'),
+      weeklyProgress: document.getElementById('weeklyProgress'),
+      totalCount: document.getElementById('totalCount'),
+      totalProgress: document.getElementById('totalProgress'),
+      statsBtn: document.getElementById('statsBtn'),
+      statsModal: document.getElementById('statsModal'),
+      closeStatsBtn: document.getElementById('closeStatsBtn'),
+      statsTotal: document.getElementById('statsTotal'),
+      statsStreak: document.getElementById('statsStreak'),
+      achievementsList: document.getElementById('achievementsList'),
+      helpBtn: document.getElementById('helpBtn'),
+      helpModal: document.getElementById('helpModal'),
+      closeHelpBtn: document.getElementById('closeHelpBtn'),
+      completeModal: document.getElementById('completeModal'),
+      completeMessage: document.getElementById('completeMessage'),
+      newTaskBtn: document.getElementById('newTaskBtn'),
+      categoryBtns: document.querySelectorAll('.category-btn')
+    };
+
+    // 渲染函数
+    const render = {
+      // 显示当前任务
+      currentTask(task) {
+        if (!task) return;
+        
+        elements.taskContent.textContent = task.content;
+        elements.taskCategory.textContent = task.categoryName;
+        
+        // 添加动画效果
+        elements.taskContent.classList.add('animate-fade-in');
+        setTimeout(() => {
+          elements.taskContent.classList.remove('animate-fade-in');
+        }, 500);
+      },
+      
+      // 渲染最近完成的任务
+      recentTasks(tasks) {
+        if (tasks.length === 0) {
+          elements.recentTasks.innerHTML = '<p class="text-dark/50 text-center italic">暂无完成的任务</p>';
+          return;
+        }
+        
+        const recent = tasks.slice(0, 5);
+        elements.recentTasks.innerHTML = recent.map(task => `
+          <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa fa-check text-green-500 text-xs"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm truncate">${task.content}</p>
+              <p class="text-xs text-dark/50">${new Date(task.date).toLocaleString()}</p>
+            </div>
+          </div>
+        `).join('');
+      },
+      
+      // 渲染进度统计
+      progress(stats) {
+        elements.weeklyCount.textContent = `${stats.weeklyCompleted}/${stats.weeklyTotal}`;
+        elements.weeklyProgress.style.width = `${(stats.weeklyCompleted / stats.weeklyTotal) * 100}%`;
+        
+        elements.totalCount.textContent = stats.total;
+        // 假设总进度条以100为满值
+        const totalProgress = Math.min((stats.total / 100) * 100, 100);
+        elements.totalProgress.style.width = `${totalProgress}%`;
+      },
+      
+      // 渲染成就统计
+      stats(stats, achievements) {
+        elements.statsTotal.textContent = stats.total;
+        elements.statsStreak.textContent = stats.streak;
+        
+        if (achievements.unlocked.length === 0) {
+          elements.achievementsList.innerHTML = '<p class="text-dark/50 text-center italic">暂无解锁的成就</p>';
+          return;
+        }
+        
+        elements.achievementsList.innerHTML = achievements.unlocked.map(achievement => `
+          <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+            <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center flex-shrink-0">
+              <i class="fa ${achievement.icon} text-yellow-500"></i>
+            </div>
+            <div>
+              <h4 class="font-medium">${achievement.name}</h4>
+              <p class="text-sm text-dark/60">${achievement.description}</p>
+            </div>
+          </div>
+        `).join('');
+      },
+      
+      // 显示完成任务弹窗
+      completeModal(task) {
+        elements.completeMessage.textContent = `你已成功完成"${task.content}"`;
+        elements.completeModal.classList.remove('hidden');
+      }
+    };
+
+    // 事件监听器
+    function setupEventListeners() {
+      // 开始按钮
+      elements.startBtn.addEventListener('click', () => {
+        elements.welcomeSection.classList.add('hidden');
+        elements.taskSection.classList.remove('hidden');
+        
+        const task = appState.getRandomTask();
+        render.currentTask(task);
+      });
+      
+      // 换一个任务按钮
+      elements.skipBtn.addEventListener('click', () => {
+        const task = appState.getRandomTask();
+        render.currentTask(task);
+      });
+      
+      // 完成任务按钮
+      elements.completeBtn.addEventListener('click', () => {
+        if (!appState.currentTask) return;
+        
+        const completedTask = appState.completeCurrentTask();
+        render.completeModal(completedTask);
+        render.recentTasks(appState.completedTasks);
+        render.progress(appState.stats);
+      });
+      
+      // 新任务按钮（在完成弹窗中）
+      elements.newTaskBtn.addEventListener('click', () => {
+        elements.completeModal.classList.add('hidden');
+        const task = appState.getRandomTask();
+        render.currentTask(task);
+      });
+      
+      // 统计按钮
+      elements.statsBtn.addEventListener('click', () => {
+        render.stats(appState.stats, appState.achievements);
+        elements.statsModal.classList.remove('hidden');
+      });
+      
+      // 关闭统计弹窗
+      elements.closeStatsBtn.addEventListener('click', () => {
+        elements.statsModal.classList.add('hidden');
+      });
+      
+      // 帮助按钮
+      elements.helpBtn.addEventListener('click', () => {
+        elements.helpModal.classList.remove('hidden');
+      });
+      
+      // 关闭帮助弹窗
+      elements.closeHelpBtn.addEventListener('click', () => {
+        elements.helpModal.classList.add('hidden');
+      });
+      
+      // 类别筛选按钮
+      elements.categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // 移除所有按钮的选中状态
+          elements.categoryBtns.forEach(b => b.classList.remove('ring-2', 'ring-primary'));
+          // 添加当前按钮的选中状态
+          btn.classList.add('ring-2', 'ring-primary');
+          
+          const category = btn.dataset.category;
+          const task = appState.getRandomTask(category);
+          render.currentTask(task);
+        });
+      });
+      
+      // 点击弹窗外部关闭弹窗
+      window.addEventListener('click', (e) => {
+        if (e.target === elements.statsModal) {
+          elements.statsModal.classList.add('hidden');
+        }
+        if (e.target === elements.helpModal) {
+          elements.helpModal.classList.add('hidden');
+        }
+        if (e.target === elements.completeModal) {
+          elements.completeModal.classList.add('hidden');
+        }
+      });
+      
+      // 滚动时改变导航栏样式
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+          header.classList.add('py-2', 'shadow');
+          header.classList.remove('py-4');
+        } else {
+          header.classList.add('py-4');
+          header.classList.remove('py-2', 'shadow');
+        }
+      });
     }
-    gtag('js', new Date());
 
-    gtag('config', 'UA-111463289-1');
-    </script>
+    // 初始化应用
+    function initApp() {
+      appState.init();
+      setupEventListeners();
+      
+      // 如果已有完成的任务，直接显示任务区域
+      if (appState.completedTasks.length > 0) {
+        elements.welcomeSection.classList.add('hidden');
+        elements.taskSection.classList.remove('hidden');
+        
+        const task = appState.getRandomTask();
+        render.currentTask(task);
+      }
+      
+      // 渲染统计数据
+      render.recentTasks(appState.completedTasks);
+      render.progress(appState.stats);
+    }
+
+    // 启动应用
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
 </body>
-
 </html>
